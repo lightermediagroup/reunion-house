@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reunion - Venue Fleksibel & Hangat di Bandung</title>
+    <meta name="description" content="Sewa venue tanpa minimum pax, dekorasi bebas, dan menu fleksibel di Setiabudi Bandung. Cocok untuk birthday, gathering, dan intimate event.">
+    
+    <!-- Fonts: League Spartan (Sans) and Sanchez (Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&family=Sanchez:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for standalone file) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#1a1a1a', // Soft black for better readability
+                            dark: '#000000',
+                            white: '#FFFFFF',
+                            gold: '#D6A655',
+                            goldLight: '#E8C488',
+                            goldDark: '#B58B44',
+                            gray: '#F5F5F5'
+                        }
+                    },
+                    fontFamily: {
+                        // Sanchez for display/serif titles
+                        serif: ['Sanchez', 'serif'],
+                        // League Spartan for body/sans text
+                        sans: ['"League Spartan"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'gold': '0 10px 30px -10px rgba(214, 166, 85, 0.4)',
+                        'floating-nav': '0 -5px 15px rgba(0,0,0,0.1)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D6A655;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B58B44;
+        }
+
+        /* Hero Overlay Gradient (Removed - now inline class) */
+
+        /* Fade In Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Image Hover Zoom */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom {
+            transition: transform 0.5s ease;
+        }
+        .img-zoom-container:hover .img-zoom {
+            transform: scale(1.05);
+        }
+        
+        /* Universal Padding for Floating Bottom Navbar */
+        body {
+            /* Padding body dihapus, clearance navbar diatur di footer */
+            padding-bottom: 0px; 
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-black antialiased bg-white">
+
+    <!-- Universal Floating Bottom Navbar -->
+    <nav id="main-navbar" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-lg bg-white/95 backdrop-blur-xl shadow-floating-nav py-2 px-4 rounded-full border border-gray-100">
+        <div class="flex justify-around items-center">
+            <!-- Nav Item 1: Home (untuk kembali ke atas) -->
+            <a href="#top" class="flex flex-col items-center p-2 rounded-xl text-brand-black hover:text-brand-gold transition-colors duration-200">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span class="text-xs font-medium mt-1">Beranda</span>
+            </a>
+            <!-- Nav Item 2: Features -->
+            <a href="#features" class="flex flex-col items-center p-2 rounded-xl text-brand-black hover:text-brand-gold transition-colors duration-200">
+                <i data-lucide="award" class="w-6 h-6"></i>
+                <span class="text-xs font-medium mt-1">Kelebihan</span>
+            </a>
+            <!-- Nav Item 3: Pricing (CTA Center - ICON TAG) -->
+            <a href="#pricing" class="transform -translate-y-2 bg-brand-gold shadow-gold p-3 rounded-full text-white border-4 border-white hover:bg-brand-goldDark transition-colors duration-200">
+                <i data-lucide="tag" class="w-7 h-7"></i>
+            </a>
+            <!-- Nav Item 4: Gallery -->
+            <a href="#gallery" class="flex flex-col items-center p-2 rounded-xl text-brand-black hover:text-brand-gold transition-colors duration-200">
+                <i data-lucide="image" class="w-6 h-6"></i>
+                <span class="text-xs font-medium mt-1">Galeri</span>
+            </a>
+            <!-- Nav Item 5: WhatsApp (Quick CTA) -->
+            <a href="https://wa.me/6281122222325?text=Halo%2C%20saya mau%20reservasi%20sewa%20tempat%20di%20Reunion.%20Mohon%20info%2C%20terima%20kasih." target="_blank" class="flex flex-col items-center p-2 rounded-xl text-brand-black hover:text-green-500 transition-colors duration-200">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                <span class="text-xs font-medium mt-1">WhatsApp</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="top" class="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-dark to-brand-black">
+        <!-- Logo is now integrated into the hero content area -->
+        <div class="absolute top-0 left-0 right-0 p-6 z-10">
+            <a href="" class="flex items-center gap-2">
+                <!-- Placeholder Image Logo - Ukuran diperbesar dari h-8 menjadi h-10 -->
+                <img src="image/logo.png" alt="Reunion Venue Logo" class="h-12">
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 container mx-auto px-6 text-center reveal active pt-16">
+            <span class="text-brand-gold uppercase tracking-[0.2em] text-sm font-bold mb-4 block">Jl. Dr. Setiabudi No.45, Pasteur, Kec. Sukajadi, Kota Bandung</span>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                Buat Momen Spesial <br>
+                <span class="italic text-brand-gold font-light">Tanpa Batasan</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                Venue hangat dan fleksibel untuk birthday, gathering, atau intimate event. 
+                Tanpa minimum pax, dekorasi bebas, sesuai caramu.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="https://wa.me/6281122222325?text=Halo%2C%20saya mau%20reservasi%20sewa%20tempat%20di%20Reunion.%20Mohon%20info%2C%20terima%20kasih." target="_blank" class="bg-brand-gold hover:bg-brand-goldDark text-white px-8 py-4 rounded-full font-medium text-lg transition-all shadow-gold flex items-center justify-center gap-2 group">
+                    <span>Reservasi Sekarang</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#features" class="border border-white text-white hover:bg-white hover:text-brand-black px-8 py-4 rounded-full font-medium text-lg transition-all flex items-center justify-center">
+                    Pelajari Lebih Lanjut
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Awareness & Pain Section -->
+    <section id="about" class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Text Content -->
+                <div class="reveal">
+                    <div class="inline-block border-b-2 border-brand-gold mb-4 pb-1">
+                        <span class="text-brand-gold font-bold uppercase tracking-wider text-sm">Masalah Umum</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6 text-brand-black leading-snug">
+                        Sering Kecewa Saat <br>Mencari Venue Acara?
+                    </h2>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-400">
+                                <i data-lucide="x-circle" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Aturan yang Kaku</h4>
+                                <p class="text-gray-600 leading-relaxed">Harus bayar lebih kalau tamu sedikit (minimum pax) dan tidak boleh bawa dekorasi sendiri.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-400">
+                                <i data-lucide="dollar-sign" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Harga Tidak Masuk Akal</h4>
+                                <p class="text-gray-600 leading-relaxed">Paket mahal yang menunya sulit disesuaikan dengan budget acara kamu.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-brand-black text-white p-8 rounded-2xl relative overflow-hidden shadow-soft">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-gold rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
+                        <h3 class="text-xl font-serif font-bold mb-2 text-brand-gold">Reunion Hadir Berbeda</h3>
+                        <p class="text-gray-300 mb-6">Kami menghapus semua batasan itu. Reunion memberi kamu kebebasan untuk membuat acara yang personal, hangat, dan sesuai budget.</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm">
+                                <i data-lucide="check" class="text-brand-gold w-4 h-4"></i> Bebas Minimum Tamu
+                            </li>
+                            <li class="flex items-center gap-2 text-sm">
+                                <i data-lucide="check" class="text-brand-gold w-4 h-4"></i> Boleh Bawa Dekor Sendiri
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Visual Comparison -->
+                <div class="relative reveal delay-200">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-brand-gold rounded-tl-3xl z-0"></div>
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-brand-gold rounded-br-3xl z-0"></div>
+                    <img src="image/1.png" alt="Intimate Gathering at Reunion" class="w-full rounded-2xl shadow-2xl relative z-10 object-cover h-[500px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interest/Features Section -->
+    <section id="features" class="py-20 bg-brand-gray relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-brand-gold font-bold uppercase tracking-wider text-sm mb-2 block">Kenapa Reunion?</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-black">Kebebasan untuk Acara Kamu</h2>
+                <p class="text-gray-600 mt-4">Venue luas, nyaman, dan fleksibel di lokasi strategis Jl. Dr. Setiabudi No.45, Pasteur, Kec. Sukajadi, Kota Bandung.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-soft transition-all duration-300 transform hover:-translate-y-1 reveal group">
+                    <div class="w-14 h-14 bg-brand-black text-brand-gold rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-gold group-hover:text-white transition-colors">
+                        <i data-lucide="users" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tanpa Min. Pax</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Cocok untuk acara intimate kecil atau grup besar. Tidak ada denda tamu sedikit.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-soft transition-all duration-300 transform hover:-translate-y-1 reveal delay-100 group">
+                    <div class="w-14 h-14 bg-brand-black text-brand-gold rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-gold group-hover:text-white transition-colors">
+                        <i data-lucide="palette" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Dekorasi Bebas</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Punya konsep sendiri? Silakan bawa dekorasi kamu. Kami dukung kreativitasmu.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-soft transition-all duration-300 transform hover:-translate-y-1 reveal delay-200 group">
+                    <div class="w-14 h-14 bg-brand-black text-brand-gold rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-gold group-hover:text-white transition-colors">
+                        <i data-lucide="chef-hat" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Menu Fleksibel</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Makanan dan minuman bisa disesuaikan dengan budget dan selera tamu undangan.</p>
+                </div>
+
+                 <!-- Feature 4 -->
+                 <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-soft transition-all duration-300 transform hover:-translate-y-1 reveal delay-300 group">
+                    <div class="w-14 h-14 bg-brand-black text-brand-gold rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-gold group-hover:text-white transition-colors">
+                        <i data-lucide="map-pin" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Lokasi Strategis</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Terletak di Jl. Dr. Setiabudi No.45, Pasteur, Kec. Sukajadi, Kota Bandung. Akses mudah, parkir luas, dan suasana sejuk.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desire/Pricing Section -->
+    <section id="pricing" class="py-20 md:py-28 bg-brand-black text-white relative overflow-hidden">
+        <!-- Decor element -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-gold opacity-10 rounded-full blur-[100px]"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">Rayakan Momenmu <br>Mulai Dari <span class="text-brand-gold">125k</span></h2>
+                    <p class="text-gray-400 text-lg mb-8">
+                        Kami menyediakan paket yang transparan dan dapat disesuaikan. Tidak ada biaya tersembunyi yang mengejutkan di akhir acara.
+                    </p>
+                    
+                    <div class="space-y-4 mb-10">
+                        <div class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/10">
+                            <i data-lucide="cake" class="text-brand-gold w-6 h-6"></i>
+                            <div>
+                                <h4 class="font-bold">Birthday Party</h4>
+                                <p class="text-sm text-gray-400">Intimate dinner hingga pesta meriah</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/10">
+                            <i data-lucide="coffee" class="text-brand-gold w-6 h-6"></i>
+                            <div>
+                                <h4 class="font-bold">Gathering & Arisan</h4>
+                                <p class="text-sm text-gray-400">Suasana santai untuk ngobrol panjang</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 rounded-lg bg-white/5 border border-white/10">
+                            <i data-lucide="presentation" class="text-brand-gold w-6 h-6"></i>
+                            <div>
+                                <h4 class="font-bold">Corporate / Meeting</h4>
+                                <p class="text-sm text-gray-400">Fasilitas untuk produktivitas</p>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                </div>
+
+                <!-- Pricing Card -->
+                <div class="reveal delay-200">
+                    <div class="bg-white text-brand-black rounded-2xl p-8 md:p-10 shadow-2xl border-4 border-brand-gold/30 transform md:rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <span class="bg-brand-black text-brand-gold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Best Value</span>
+                                <h3 class="text-2xl font-bold mt-2">Reunion Special</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-sm text-gray-500">Mulai dari</span>
+                                <div class="text-3xl font-serif font-bold text-brand-gold">Rp 125.000<span class="text-sm text-gray-400 font-sans font-normal">/pax</span></div>
+                            </div>
+                        </div>
+                        
+                        <hr class="border-gray-100 mb-6">
+
+                        <!-- LIST FITUR DENGAN KONSISTENSI FONT SEMI-BOLD (font-semibold) -->
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 font-semibold">Bebas Minimum Jumlah Tamu (Min Pax)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 font-semibold">Diperbolehkan Bawa Dekorasi Sendiri</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 font-semibold">Menu Makanan & Minuman Dapat Disesuaikan</span>
+                            </li>
+                           
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-gray-700 font-semibold">Standard Sound System & Mic</span>
+                            </li>
+                        </ul>
+                        <!-- AKHIR LIST FITUR -->
+
+                        <a href="https://wa.me/6281122222325?text=Halo%2C%20saya mau%20reservasi%20sewa%20tempat%20di%20Reunion.%20Mohon%20info%2C%20terima%20kasih." class="block w-full bg-brand-gold hover:bg-brand-goldDark text-white text-center py-4 rounded-xl font-bold text-lg shadow-gold transition-all">
+                            Booking Sekarang
+                        </a>
+                        <p class="text-center text-xs text-gray-400 mt-4">*Syarat & ketentuan berlaku. Harga dapat disesuaikan dengan menu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Momen di Reunion</h2>
+                <p class="text-gray-600">Berbagai acara seru yang telah terselenggara di tempat kami.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                <!-- Item 1 (Large) -->
+                <div class="col-span-2 row-span-2 rounded-xl img-zoom-container reveal">
+                    <img src="image/2.JPG" alt="Birthday Party" class="w-full h-full object-cover img-zoom">
+                </div>
+                <!-- Item 2 -->
+                <div class="rounded-xl img-zoom-container reveal delay-100">
+                    <img src="image/3.jpg" alt="Food Setup" class="w-full h-full object-cover img-zoom">
+                </div>
+                <!-- Item 3 -->
+                <div class="rounded-xl img-zoom-container reveal delay-100">
+                    <img src="image/4.jpg" alt="Drinks" class="w-full h-full object-cover img-zoom">
+                </div>
+                <!-- Item 4 -->
+                <div class="rounded-xl img-zoom-container reveal delay-200">
+                    <img src="image/5.jpg" alt="Meeting" class="w-full h-full object-cover img-zoom">
+                </div>
+                 <!-- Item 5 -->
+                 <div class="rounded-xl img-zoom-container reveal delay-200">
+                    <img src="image/6.jpg" alt="Decor Details" class="w-full h-full object-cover img-zoom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial (Social Proof) -->
+    <section class="py-20 bg-brand-gray">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-3xl font-serif font-bold mb-12">Kata Mereka</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm reveal">
+                    <div class="flex text-brand-gold mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Enak banget tempatnya buat arisan keluarga. Makanan bisa request sesuai budget dan staff-nya ramah banget."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">S</div>
+                        <div>
+                            <p class="font-bold text-sm">Sarah Amalia</p>
+                            <p class="text-xs text-gray-400">Arisan Event</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testi 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm reveal delay-100">
+                    <div class="flex text-brand-gold mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Akhirnya nemu tempat birthday yang gak ribet aturannya. Boleh bawa dekor sendiri itu nilai plus banget!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">D</div>
+                        <div>
+                            <p class="font-bold text-sm">Dimas Pratama</p>
+                            <p class="text-xs text-gray-400">Birthday Party</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testi 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm reveal delay-200">
+                    <div class="flex text-brand-gold mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Lokasi strategis di Setiabudi, parkir aman. Makanan enak semua. Recommended buat meeting santai."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">R</div>
+                        <div>
+                            <p class="font-bold text-sm">Rina Wati</p>
+                            <p class="text-xs text-gray-400">Office Gathering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="bg-brand-black rounded-3xl p-10 md:p-16 text-center relative overflow-hidden reveal">
+                <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6 relative z-10">Siap Membuat Acara Impianmu?</h2>
+                <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto relative z-10">
+                    Jangan ragu untuk konsultasi kebutuhan acaramu. Admin kami siap membantu menyesuaikan dengan budget kamu.
+                </p>
+                <a href="https://wa.me/6281122222325?text=Halo%2C%20saya mau%20reservasi%20sewa%20tempat%20di%20Reunion.%20Mohon%20info%2C%20terima%20kasih." target="_blank" class="inline-flex items-center gap-3 bg-brand-gold hover:bg-white hover:text-brand-gold text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-gold relative z-10">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    Hubungi WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black text-white pt-16 pb-24 border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                
+                <!-- Logo & Kontak Block -->
+                <div class="md:col-span-1">
+                    <a href="" class="flex items-center gap-2 mb-6">
+                        <!-- Placeholder Image Logo - Ukuran diperbesar dari h-8 menjadi h-10 -->
+                        <img src="image/logo.png" alt="Reunion Venue Logo" class="h-12">
+                    </a>
+                    <h4 class="font-bold text-lg mb-6 mt-10 text-brand-gold">Kontak Kami</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="text-brand-gold w-5 h-5 flex-shrink-0 mt-1"></i>
+                            <span>Jl. Dr. Setiabudi No. 45,<br>Bandung, Jawa Barat</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="text-brand-gold w-5 h-5 flex-shrink-0"></i>
+                            <span>0811 2222 2325</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="instagram" class="text-brand-gold w-5 h-5 flex-shrink-0"></i>
+                            <span>@reunionhouse</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Spacer for larger screens -->
+                <div class="hidden md:block md:col-span-2"></div>
+                
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2025 Reunion Venue. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Scroll Reveal Animation (kept for content sections)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+    </script>
+</body>
+</html>
